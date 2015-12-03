@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/green_light"
+        android:text="主界面" 
+        android:textSize="25sp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="萌哥手机卫士,你值得拥有,你用不了吃亏,你用不了上当,你值得拥有!"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
+    <GridView
+   	    android:id="@+id/home_gv_main"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" 
+   	  	android:numColumns="3"
+   	    ></GridView>
+</LinearLayout>

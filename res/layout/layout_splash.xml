@@ -26,5 +26,16 @@
         style="@android:style/Widget.ProgressBar"
          
         />
+    <ProgressBar
+        android:id="@+id/splash_pb_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        style="@android:style/Widget.ProgressBar.Horizontal" 
+        android:progress="0"
+        android:alpha="80"
+        android:visibility="invisible"
+        />
+    
 
 </RelativeLayout>
