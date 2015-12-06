@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:defined="http://schemas.android.com/apk/res/com.wangmeng.phonedefender"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/title_style"
+        android:text="设置中心" />
+    
+	<com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+		defined:name="自动更新设置"
+	    defined:state_on="自动更新已开启"
+	    defined:state_off="自动更新已关闭"
+	    />
+
+
+</LinearLayout>

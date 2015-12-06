@@ -28,6 +28,8 @@
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.HomeActivity" >
         </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.SettingActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置中心界面的条目布局文件 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp" >
+
+    <TextView
+        android:id="@+id/setting_item_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_text"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/setting_item_tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setting_item_tv_name"
+        android:text="@string/test_text"
+        android:textColor="#a000"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/setting_item_cb_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@id/setting_item_tv_state"
+        android:layout_marginTop="5dp"
+        android:background="@color/green_light" />
+
+</RelativeLayout>

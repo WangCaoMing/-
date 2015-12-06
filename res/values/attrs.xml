@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SettingItemLayout">
+        <attr name="name" format="string" />
+        <attr name="state_on" format="string" />
+        <attr name="state_off" format="string" />
+    </declare-styleable>
+
+</resources>

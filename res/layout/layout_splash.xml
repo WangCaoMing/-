@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/splash_layout"
     tools:context=".SplashActivity" 
     android:background="@drawable/splash">
 
@@ -12,19 +13,17 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="20sp"
-        android:shadowColor="#ff0000"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="10"
+        android:shadowColor="#ff99cc00"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:text="@string/test_text"
         android:textColor="#ffffff" />
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/splash_tv_version"
-        android:layout_centerHorizontal="true"
-        style="@android:style/Widget.ProgressBar"
-         
+        android:layout_centerHorizontal="true" 
         />
     <ProgressBar
         android:id="@+id/splash_pb_download"

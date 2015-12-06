@@ -37,12 +37,16 @@ import android.app.Notification.Action;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.view.Display;
 import android.view.Menu;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -52,6 +56,9 @@ import android.widget.TextView;
  * 
  */
 public class SplashActivity extends Activity {
+
+	// 配置文件
+	private static SharedPreferences sprefs;
 
 	// 用于判断消息类型的常量
 	protected static final int UPDATE_ERROR_NETWORK = 0; // 网络错误标识
@@ -112,7 +119,7 @@ public class SplashActivity extends Activity {
 						if (Environment.getExternalStorageState() == Environment.MEDIA_UNMOUNTED) {// 判断SD卡是否挂载
 							DisplayTools.ShowToast(SplashActivity.this,
 									"没有SD卡, 无法完成更新");
-							EnterHomeActivity(); //更新失败, 直接跳转到主界面
+							EnterHomeActivity(); // 更新失败, 直接跳转到主界面
 						}
 						String target = Environment
 								.getExternalStorageDirectory() + "/update.apk"; // 设置下载文件的路径
@@ -122,14 +129,17 @@ public class SplashActivity extends Activity {
 
 									@Override
 									public void onSuccess(
-											ResponseInfo<File> arg0) {//arg0变量中保存了下载的文件的数据
+											ResponseInfo<File> arg0) {// arg0变量中保存了下载的文件的数据
 										DisplayTools
 												.ShowToast(SplashActivity.this,
 														"更新文件下载成功");
-										//下载完成后跳转到软件的安装界面
-										Intent intent = new Intent(Intent.ACTION_VIEW);// 调用系统的就软件安装器需要从源码中查看此安装器activity的过滤器的设置来书写
+										// 下载完成后跳转到软件的安装界面
+										Intent intent = new Intent(
+												Intent.ACTION_VIEW);// 调用系统的就软件安装器需要从源码中查看此安装器activity的过滤器的设置来书写
 										intent.addCategory(Intent.CATEGORY_DEFAULT);
-										intent.setDataAndType(Uri.fromFile(arg0.result), "application/vnd.android.package-archive");
+										intent.setDataAndType(
+												Uri.fromFile(arg0.result),
+												"application/vnd.android.package-archive");
 										startActivity(intent);
 									}
 
@@ -171,9 +181,17 @@ public class SplashActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_splash);
+		// 获取配置文件
+		sprefs = getSharedPreferences("sprefs", MODE_PRIVATE);
+
+		// 获取配置文件中配置信息
+		boolean auto_update = sprefs.getBoolean("auto_update", true); // 获取自动更新配置信息
+
 		// 获取组件
+		RelativeLayout splash_layout = (RelativeLayout) findViewById(R.id.splash_layout); // 获取Splash界面布局文件的跟布局组件Relatively
 		splash_tv_version = (TextView) findViewById(R.id.splash_tv_version);
 		splash_pb_download = (ProgressBar) findViewById(R.id.splash_pb_download);
+
 		// 设置splash界面的版本展示文本
 		PackageManager packageManager = getPackageManager();// 获取包管理器
 		try {
@@ -185,8 +203,21 @@ public class SplashActivity extends Activity {
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
+
 		// 检查版本更新
-		CheckUpdate();
+		if (auto_update)
+			CheckUpdate();
+		else {
+			// 延时4秒跳转到主界面
+			Message msg = new Message();
+			msg.what = ENTER_HOME;
+			handler.sendMessageDelayed(msg, 4000);
+		}
+
+		// 为splash界面设置启动的动画
+		ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1, 360, 640);
+		animation.setDuration(250);
+		splash_layout.startAnimation(animation);
 	}
 
 	/**
@@ -194,10 +225,9 @@ public class SplashActivity extends Activity {
 	 */
 	public void EnterHomeActivity() {
 		// 跳转到主界面
-		finish(); //结束splash界面
 		Intent intent = new Intent(this, HomeActivity.class);
 		startActivity(intent);
-		
+		finish(); // 结束splash界面
 	}
 
 	/**
