@@ -145,6 +145,7 @@ public class HomeActivity extends Activity {
 					// 退出对话框并进入手机防盗主界面
 					dialog.dismiss();
 					dialog.cancel();
+					startActivity(new Intent(HomeActivity.this, Option0Activity.class)); //跳转到手机防盗的主界面
 
 				}
 			}
@@ -197,7 +198,7 @@ public class HomeActivity extends Activity {
 					DisplayTools.ShowToast(HomeActivity.this, "两次密码输入不一致");
 				else {
 					// 将设置好的密码写入到配置文件中
-					password = ConvertTools.MD5(password); //将密码MD5加密
+					password = ConvertTools.MD5(password); // 将密码MD5加密
 					sprefs.edit().putString("password", password).commit(); // 一定要记得commit,
 																			// 否则后果很严重,
 																			// 你会很长时间找不到错误在哪里

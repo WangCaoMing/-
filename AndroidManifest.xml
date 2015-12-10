@@ -30,6 +30,16 @@
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.SettingActivity" >
         </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.Option0Activity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.setup_activity.Setup0Activity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.setup_activity.Setup1Activity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.setup_activity.Setup2Activity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.setup_activity.Setup3Activity" >
+        </activity>
     </application>
 
 </manifest>

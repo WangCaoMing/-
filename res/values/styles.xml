@@ -2,7 +2,7 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:style/Theme.Black"></style>
 
@@ -12,11 +12,8 @@
         <!-- 没有标题栏的设置 -->
         <item name="android:windowNoTitle">true</item>
     </style>
-    
 
-    <style
-        name="title_style" 
-        >
+    <style name="title_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:background">@color/green_light</item>
@@ -24,4 +21,47 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="next_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:text">下一步</item>
+        <item name="android:onClick">next</item>
+    </style>
+
+    <style name="prior_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:text">上一步</item>
+        <item name="android:onClick">prior</item>
+    </style>
+
+    <style name="option0_textview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="option0_textview2_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawableLeft">@android:drawable/ic_input_get</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
 </resources>
