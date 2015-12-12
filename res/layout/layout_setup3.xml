@@ -9,6 +9,7 @@
         android:text="设置完成" />
 
     <CheckBox
+        android:id="@+id/cb_safe_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

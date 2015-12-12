@@ -91,24 +91,35 @@ public class SettingItemLayout extends RelativeLayout {
 					state = true; // 更新当前的checkbox的状态
 				}
 				SetState(state); // 更新状态说明字符串
-				sprefs.edit().putBoolean("auto_update", state).commit(); // 将更新的配置回写到配置文件中
 			}
 		});
 	}
 
 	/**
-	 * 设置状态说明字符串和更新checkbox的状态
+	 * 设置状态说明字符串和更新checkbox的状态, 并写入到配置文件中
 	 * 
 	 * @param state
 	 */
-	private void SetState(boolean state) {
+	public void SetState(boolean state) {
 		if (state) {
+			this.state = state;
 			setting_item_tv_state.setText(state_on);
 			setting_item_cb_switch.setChecked(state);
+			sprefs.edit().putBoolean("auto_update", state).commit(); // 将更新的配置回写到配置文件中
 		} else {
+			this.state = state;
 			setting_item_tv_state.setText(state_off);
 			setting_item_cb_switch.setChecked(state);
+			sprefs.edit().putBoolean("auto_update", state).commit(); // 将更新的配置回写到配置文件中
 		}
 	}
-
+	
+	/**
+	 * 返回当前的状态信息
+	 * @return 当前的状态信息
+	 */
+	public boolean GetState()
+	{
+		return state;
+	}
 }

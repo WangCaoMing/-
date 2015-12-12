@@ -17,6 +17,7 @@
             android:layout_alignParentLeft="true"
             />
         <TextView
+             android:id="@+id/option0_tv_safenumber"
              style="@style/option0_textview_style"
              android:text="@string/test_text"
              android:layout_alignParentRight="true"
@@ -40,10 +41,15 @@
             android:text="防盗保护是否开启" 
             android:layout_alignParentLeft="true"
             />
-        <TextView
-             style="@style/option0_textview_style"
-             android:text="@string/test_text"
-             android:layout_alignParentRight="true"
+        <ImageView
+            android:id="@+id/option0_iv_openstate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@drawable/unlock" 
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             />
         <TextView
             android:layout_width="match_parent"
@@ -68,6 +74,37 @@
             android:clickable="true"
             android:onClick="ReSetup"
             />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#8000" 
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            />
+    </RelativeLayout>
+    
+       <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" 
+        android:clickable="true"
+        android:onClick="ActiveDeviceAdmin"
+        android:background="@drawable/button_textview"
+        >
+        <TextView
+            style="@style/option0_textview_style"
+            android:text="激活设备管理器" 
+            android:layout_alignParentLeft="true"
+            />
+        <TextView
+            style="@style/option0_textview_style"
+            android:textSize="10sp"
+            android:textColor="#9000"
+            android:text="只有激活设备管理器该软件才能正常工作" 
+            android:layout_alignParentRight="true"
+            
+            />
+        
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"

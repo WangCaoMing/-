@@ -2,20 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
+
     <ImageView
         android:id="@+id/view_item_gv_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:src="@drawable/p1"
-        />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:src="@drawable/p1" />
+
     <TextView
         android:id="@+id/view_item_gv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_item_gv_image"
+        android:layout_alignBottom="@+id/view_item_gv_image"
         android:layout_centerHorizontal="true"
-        android:text="@string/test_text" 
-        android:textSize="20sp"
-        />
+        android:text="@string/test_text"
+        android:textSize="20sp" />
 
 </RelativeLayout>

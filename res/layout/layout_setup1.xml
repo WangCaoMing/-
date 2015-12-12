@@ -31,6 +31,7 @@
         android:text="就会发送报警短信"
         android:textSize="20sp" />
     <com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout
+        android:id="@+id/layout_step1_si_sim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:name="点击绑定SIM卡"
