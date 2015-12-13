@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView
+        style="@style/title_style"
+        android:text="归属地查询" 
+        />
+    <EditText
+        android:id="@+id/checkphonenumber_et_phonenum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="请输入手机号码" 
+        android:inputType="number"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:onClick="checkNow" 
+        android:background="@drawable/button_green"
+        />
+    <TextView
+        android:id="@+id/checkphonenumber_tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="5dp" 
+        />
+
+</LinearLayout>

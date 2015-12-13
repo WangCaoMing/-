@@ -2,8 +2,10 @@ package com.wangmeng.phonedefender.activity;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,6 +24,7 @@ import com.wangmeng.phonedefender.R.id;
 import com.wangmeng.phonedefender.R.layout;
 import com.wangmeng.phonedefender.tools.ConvertTools;
 import com.wangmeng.phonedefender.tools.DisplayTools;
+import com.wangmeng.phonedefender.tools.TransportTools;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -213,11 +216,30 @@ public class SplashActivity extends Activity {
 			msg.what = ENTER_HOME;
 			handler.sendMessageDelayed(msg, 4000);
 		}
+		
+		//拷贝数据库到files文件夹中(为归属地查询提供数据库)
+		copyDB();
 
 		// 为splash界面设置启动的动画
 		ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1, 360, 640);
 		animation.setDuration(250);
 		splash_layout.startAnimation(animation);
+	}
+	
+	/**
+	 * 拷贝数据库到files文件夹中
+	 */
+	private void copyDB() {
+		try {
+			InputStream in = getAssets().open("address.db"); //获取输入流
+			File file = new File(getFilesDir().getAbsolutePath(), "address.db");
+			OutputStream out = new FileOutputStream(file); //创建输出流
+			
+			TransportTools.In2OutStream(in, out); //将输入流中的数据传输到输出流
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
