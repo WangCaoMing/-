@@ -12,11 +12,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -50,7 +51,10 @@
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.setup_activity.DisplayContactsActivity" >
         </activity>
-
+        <activity android:name="com.wangmeng.phonedefender.activity.AdvancedToolsActivity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.advancedtools_activity.CheckPhoneNumberActivity" >
+        </activity>
         <!-- receiver -->
         <receiver android:name="com.wangmeng.phonedefender.receiver.BootCompleteReceiver" >
             <intent-filter>
@@ -58,10 +62,10 @@
                 <!-- 用于接收开机启动完成广播的过滤器 -->
             </intent-filter>
         </receiver>
-        <receiver android:name="com.wangmeng.phonedefender.receiver.SMSReceiver">
-            <intent-filter 
-                android:priority="2147483647">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/><!-- 用于接收收到短信时的广播 -->
+        <receiver android:name="com.wangmeng.phonedefender.receiver.SMSReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+ <!-- 用于接收收到短信时的广播 -->
             </intent-filter>
         </receiver>
         <receiver
@@ -77,9 +81,10 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
-        
+
         <!-- service -->
-        <service android:name="com.wangmeng.phonedefender.service.LocationService"></service>
+        <service android:name="com.wangmeng.phonedefender.service.LocationService" >
+        </service>
     </application>
 
 </manifest>

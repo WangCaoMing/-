@@ -104,7 +104,12 @@ public class HomeActivity extends Activity {
 					else
 						Login(password);
 					break;
+				case 7: // 点击高级工具按钮
+					overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+					startActivity(new Intent(HomeActivity.this, AdvancedToolsActivity.class));
+					break;
 				case 8: // 点击设置中心按钮
+					overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
 					startActivity(new Intent(HomeActivity.this,
 							SettingActivity.class));
 					break;
@@ -115,7 +120,7 @@ public class HomeActivity extends Activity {
 			}
 		});
 	}
-
+	
 	/**
 	 * 登录手机防盗界面验证密码
 	 */
