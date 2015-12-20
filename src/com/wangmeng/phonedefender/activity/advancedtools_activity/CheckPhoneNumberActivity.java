@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wangmeng.phonedefender.R;
+import com.wangmeng.phonedefender.tools.CheckTools;
 import com.wangmeng.phonedefender.tools.DisplayTools;
 
 /**
@@ -27,9 +28,7 @@ public class CheckPhoneNumberActivity extends Activity {
 
 	// 布局文件中的组件
 	private EditText et_phonenum;
-
-	// 数据库的路径
-	private String path = "data/data/com.wangmeng.phonedefender/files/address.db";
+	
 	private TextView tv_result;
 
 	@Override
@@ -125,18 +124,9 @@ public class CheckPhoneNumberActivity extends Activity {
 		case 9:
 		case 10:
 		case 11:
-			SQLiteDatabase database = SQLiteDatabase.openDatabase(path, null,
-					SQLiteDatabase.OPEN_READONLY); // 打开数据库文件
-			String subnum = phonenum.substring(0, 7);
-			System.out.println(subnum);
-			String sql = "select location from data2 where id=(select outkey from data1 where id=?)";
-			Cursor cursor = database.rawQuery(sql, new String[]{subnum});
-			String location = "";
-			if (cursor.moveToNext())
-			{
-				location = cursor.getString(cursor.getColumnIndex("location"));
+			String location = CheckTools.CheckPhoneNumberLocation(phonenum);
+			if (location != null)
 				tv_result.setText(location);
-			}
 			else 
 			{
 				tv_result.setText("此号码不存在");

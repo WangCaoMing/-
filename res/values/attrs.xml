@@ -6,5 +6,5 @@
         <attr name="state_on" format="string" />
         <attr name="state_off" format="string" />
     </declare-styleable>
-
+   
 </resources>

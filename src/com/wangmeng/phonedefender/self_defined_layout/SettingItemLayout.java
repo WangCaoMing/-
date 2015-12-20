@@ -32,6 +32,7 @@ public class SettingItemLayout extends RelativeLayout {
 	private String name;
 	private String state_on;
 	private String state_off;
+	private String id = String.valueOf(this.getId());
 
 	// 组件中CheckBox组件的状态值
 	private boolean state;
@@ -71,7 +72,7 @@ public class SettingItemLayout extends RelativeLayout {
 		setting_item_cb_switch = (CheckBox) findViewById(R.id.setting_item_cb_switch);
 
 		// 为组件设置初始值
-		state = sprefs.getBoolean("auto_update", true); // 从配置文件中获取自动更新配置,
+		state = sprefs.getBoolean(id, true); // 从配置文件中获取自动更新配置,
 														// 默认是true
 		setting_item_tv_name.setText(name);
 		SetState(state);
@@ -105,12 +106,12 @@ public class SettingItemLayout extends RelativeLayout {
 			this.state = state;
 			setting_item_tv_state.setText(state_on);
 			setting_item_cb_switch.setChecked(state);
-			sprefs.edit().putBoolean("auto_update", state).commit(); // 将更新的配置回写到配置文件中
+			sprefs.edit().putBoolean(id, state).commit(); // 将更新的配置回写到配置文件中
 		} else {
 			this.state = state;
 			setting_item_tv_state.setText(state_off);
 			setting_item_cb_switch.setChecked(state);
-			sprefs.edit().putBoolean("auto_update", state).commit(); // 将更新的配置回写到配置文件中
+			sprefs.edit().putBoolean(id, state).commit(); // 将更新的配置回写到配置文件中
 		}
 	}
 	
