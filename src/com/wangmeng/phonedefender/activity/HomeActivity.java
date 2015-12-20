@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.wangmeng.phonedefender.R;
 import com.wangmeng.phonedefender.receiver.MyDeviceAdminReceiver;
+import com.wangmeng.phonedefender.service.CallStateService;
 import com.wangmeng.phonedefender.tools.ConvertTools;
 import com.wangmeng.phonedefender.tools.DisplayTools;
 
@@ -50,7 +51,6 @@ public class HomeActivity extends Activity {
 	
 		// 获取配置文件
 		sprefs = getSharedPreferences("sprefs", MODE_PRIVATE);
-
 		// 获取显示组件
 		GridView home_gv_main = (GridView) findViewById(R.id.home_gv_main);
 

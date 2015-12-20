@@ -22,6 +22,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.wangmeng.phonedefender.R;
 import com.wangmeng.phonedefender.R.id;
 import com.wangmeng.phonedefender.R.layout;
+import com.wangmeng.phonedefender.service.CallStateService;
 import com.wangmeng.phonedefender.tools.ConvertTools;
 import com.wangmeng.phonedefender.tools.DisplayTools;
 import com.wangmeng.phonedefender.tools.TransportTools;
@@ -219,6 +220,11 @@ public class SplashActivity extends Activity {
 		
 		//拷贝数据库到files文件夹中(为归属地查询提供数据库)
 		copyDB();
+		
+		//开启来电监听的服务
+		boolean callstateservice_state = sprefs.getBoolean("callstateservice_state", true); //从配置文件中获取监听电话状态的开启状态
+		if (callstateservice_state) // 设置相应的状态
+			startService(new Intent(this, CallStateService.class));
 
 		// 为splash界面设置启动的动画
 		ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1, 360, 640);

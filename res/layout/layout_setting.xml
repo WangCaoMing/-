@@ -8,14 +8,33 @@
     <TextView
         style="@style/title_style"
         android:text="设置中心" />
-    
-	<com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-		defined:name="自动更新设置"
-	    defined:state_on="自动更新已开启"
-	    defined:state_off="自动更新已关闭"
-	    />
 
+    <com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout
+        android:id="@+id/layout_setting_sil_autoupdate"
+        defined:name="自动更新设置"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        defined:state_off="自动更新已关闭"
+        defined:state_on="自动更新已开启" />
+
+    <com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout
+        android:id="@+id/layout_setting_sil_displaylocation"
+        defined:name="电话归属地显示设置"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        defined:state_off="显示归属地已关闭"
+        defined:state_on="显示归属地已开启" />
+
+    <com.wangmeng.phonedefender.self_defined_layout.SettingItemClickLayout
+        android:id="@+id/layout_setting_sil_locationstyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.wangmeng.phonedefender.self_defined_layout.SettingItemClickLayout>
+
+    <com.wangmeng.phonedefender.self_defined_layout.SettingItemClickLayout
+        android:id="@+id/layout_setting_sil_locationsite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.wangmeng.phonedefender.self_defined_layout.SettingItemClickLayout>
 
 </LinearLayout>

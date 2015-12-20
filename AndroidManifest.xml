@@ -17,7 +17,8 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
 
     <application
         android:allowBackup="true"
@@ -55,6 +56,7 @@
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.advancedtools_activity.CheckPhoneNumberActivity" >
         </activity>
+        <activity android:name="com.wangmeng.phonedefender.self_defined_layout.SetLocationSiteActivity"></activity>
         <!-- receiver -->
         <receiver android:name="com.wangmeng.phonedefender.receiver.BootCompleteReceiver" >
             <intent-filter>
@@ -65,7 +67,7 @@
         <receiver android:name="com.wangmeng.phonedefender.receiver.SMSReceiver" >
             <intent-filter android:priority="2147483647" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
- <!-- 用于接收收到短信时的广播 -->
+                <!-- 用于接收收到短信时的广播 -->
             </intent-filter>
         </receiver>
         <receiver
@@ -81,9 +83,13 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+        <receiver android:name="com.wangmeng.phonedefender.receiver.OutCallReceiver">
+        </receiver>
 
         <!-- service -->
         <service android:name="com.wangmeng.phonedefender.service.LocationService" >
+        </service>
+        <service android:name="com.wangmeng.phonedefender.service.CallStateService" >
         </service>
     </application>
 
