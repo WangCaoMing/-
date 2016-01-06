@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="layout_calldefender_item_tv_mode"></item>
+    <item type="id" name="layout_calldefender_item_iv_delete"></item>
+</resources>

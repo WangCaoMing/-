@@ -18,7 +18,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -56,7 +57,13 @@
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.advancedtools_activity.CheckPhoneNumberActivity" >
         </activity>
-        <activity android:name="com.wangmeng.phonedefender.self_defined_layout.SetLocationSiteActivity"></activity>
+        <activity
+            android:name="com.wangmeng.phonedefender.self_defined_layout.SetLocationSiteActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <!-- 设置activity为透明效果 -->
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.CallDefenderActivity"></activity>
+ 
         <!-- receiver -->
         <receiver android:name="com.wangmeng.phonedefender.receiver.BootCompleteReceiver" >
             <intent-filter>
@@ -83,7 +90,7 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.wangmeng.phonedefender.receiver.OutCallReceiver">
+        <receiver android:name="com.wangmeng.phonedefender.receiver.OutCallReceiver" >
         </receiver>
 
         <!-- service -->

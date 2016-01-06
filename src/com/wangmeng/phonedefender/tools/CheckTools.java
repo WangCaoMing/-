@@ -45,7 +45,7 @@ public class CheckTools {
 	}
 	
 	/**
-	 * 返回服务器的状态(运行?结束?)
+	 * 返回服务的状态(运行?结束?)
 	 * @param context 传送Context对象
 	 * @param service_name 要查询的service的全路径名
 	 * @return

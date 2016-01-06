@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/title_style"
+        android:text="通信卫士" 
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <include
+            android:id="@+id/layout_call_safe_lv"
+            layout="@layout/view_listview" 
+            
+        ></include>
+        <LinearLayout
+            android:id="@+id/layout_call_safe_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            
+            >
+            <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="正在玩命加载中..." 
+            />
+        </LinearLayout>
+        
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_weight="0"
+        android:orientation="horizontal" 
+        android:gravity="center_vertical"
+        >
+        <Button
+            android:id="@+id/layout_call_safe_bt_prior"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="上一页" 
+            android:onClick="Prior"
+            android:background="@drawable/button_green"
+            />
+        <EditText
+            android:id="@+id/layout_call_safe_bt_input_pagenumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" 
+            android:layout_weight="1"
+            android:inputType="number"
+            />
+        <Button
+            android:id="@+id/layout_call_safe_bt_jump"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="跳转" 
+            android:onClick="Jump"
+            android:background="@drawable/button_green"
+            />
+        
+        <Button
+            android:id="@+id/layout_call_safe_bt_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="下一页" 
+            android:onClick="Next"
+            android:background="@drawable/button_green"
+            />
+        <TextView
+            android:id="@+id/layout_call_safe_bt_tv_currentinfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="0/00" 
+            />
+    </LinearLayout>
+    
+</LinearLayout>
