@@ -53,7 +53,7 @@ public class HomeActivity extends Activity {
 		sprefs = getSharedPreferences("sprefs", MODE_PRIVATE);
 		// 获取显示组件
 		GridView home_gv_main = (GridView) findViewById(R.id.home_gv_main);
-
+		
 		// 为GridView设置适配器
 		home_gv_main.setAdapter(new BaseAdapter() {
 
@@ -104,6 +104,10 @@ public class HomeActivity extends Activity {
 					else
 						Login(password);
 					break;
+				case 1: // 点击通信卫士按钮
+				    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+				    startActivity(new Intent(HomeActivity.this, CallDefenderActivity.class));
+				    break;
 				case 7: // 点击高级工具按钮
 					overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
 					startActivity(new Intent(HomeActivity.this, AdvancedToolsActivity.class));
@@ -119,6 +123,13 @@ public class HomeActivity extends Activity {
 				}
 			}
 		});
+	}
+	
+	@Override
+	public void finish() {
+	    // TODO Auto-generated method stub
+	    this.moveTaskToBack(true);
+	    //super.finish();
 	}
 	
 	/**
