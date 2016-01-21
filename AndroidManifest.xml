@@ -19,7 +19,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
 
     <application
         android:allowBackup="true"
@@ -38,6 +44,11 @@
             </intent-filter>
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.HomeActivity" >
+            <intent-filter
+                >
+                <action android:name="com.wangmeng.phonedefender.shortcut"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
         <activity android:name="com.wangmeng.phonedefender.activity.SettingActivity" >
         </activity>
@@ -60,14 +71,20 @@
         <activity
             android:name="com.wangmeng.phonedefender.self_defined_layout.SetLocationSiteActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+
             <!-- 设置activity为透明效果 -->
         </activity>
-        <activity android:name="com.wangmeng.phonedefender.activity.CallDefenderActivity"></activity>
- 
+        <activity android:name="com.wangmeng.phonedefender.activity.CallDefenderActivity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.SoftwareManagerActivity" >
+        </activity>
+        <activity android:name="com.wangmeng.phonedefender.activity.TaskManagerActivity"></activity>
+
         <!-- receiver -->
         <receiver android:name="com.wangmeng.phonedefender.receiver.BootCompleteReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <!-- 用于接收开机启动完成广播的过滤器 -->
             </intent-filter>
         </receiver>
@@ -97,6 +114,8 @@
         <service android:name="com.wangmeng.phonedefender.service.LocationService" >
         </service>
         <service android:name="com.wangmeng.phonedefender.service.CallStateService" >
+        </service>
+        <service android:name="com.wangmeng.phonedefender.service.LanJieService" >
         </service>
     </application>
 

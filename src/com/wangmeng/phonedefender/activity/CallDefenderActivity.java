@@ -11,7 +11,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,13 +49,13 @@ public class CallDefenderActivity extends Activity {
 
     // 分页的数据
     private static int current_page = 0;
-    private static int page_size = 9;
+    private static int page_size = 15;
     private static int page_count = 0;
     private static int data_count = 0;
 
     // handler
     private Handler handler = new Handler() {
-        
+
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 1) {
                 // 设置进度条为不可见
@@ -60,7 +63,32 @@ public class CallDefenderActivity extends Activity {
 
                 adapter = new MyAdapter();
                 lv.setAdapter(adapter);
-
+                //为lv设置滚动监听事件, 学习用, 并不是最终的功能
+                lv.setOnScrollListener(new OnScrollListener() {
+                    /**
+                     * SCROLL_STATE_IDLE 空闲状态
+                     * SCROLL_STATE_FLING 惯性滑动(手指离开后的滑动)
+                     * SCROLL_STATE_TO53UCH_SCROLL 用手指滑动
+                     */
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                        if (scrollState == OnScrollListener.SCROLL_STATE_IDLE)
+                            System.out.println("空闲状态");
+                        else if (scrollState == OnScrollListener.SCROLL_STATE_FLING)
+                            System.out.println("正在脱离手指滑动");
+                        else if (scrollState == OnScrollListener.SCROLL_STATE_TOUCH_SCROLL)
+                            System.out.println("用户正在用手指滑动");
+                    }
+                    
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem,
+                            int visibleItemCount, int totalItemCount) {
+                        //System.out.println("可见的条目数:" + visibleItemCount);
+                        //System.out.println("总共的条目数:" + visibleItemCount);
+                        System.out.println("第一个可见的条目:" + lv.getFirstVisiblePosition());
+                        System.out.println("最后一个可见的条目:" + lv.getLastVisiblePosition());
+                    }
+                });
                 // 更新底部工具栏的状态
                 adapter.notifyDataSetChanged();
                 updateToolbar();
@@ -175,10 +203,10 @@ public class CallDefenderActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             // 声明一个ViewHolder
             ViewHolder holder;
-            
-            //给点击事件函数使用
+
+            // 给点击事件函数使用
             final int current_position = position;
-            
+
             // 判断是否convertView为空
             if (convertView == null) {
                 // 创建一个view
@@ -202,9 +230,9 @@ public class CallDefenderActivity extends Activity {
 
             // 获取数据
             BlackNumberBean bean = list.get(position);
-            
+
             convertView.setClickable(false);
-            
+
             // 将获取到的数据设置到组件上
             holder.tv_number.setText(bean.getNumber());
 
@@ -217,44 +245,50 @@ public class CallDefenderActivity extends Activity {
             } else if ("3".equals(mode)) {
                 holder.tv_mode.setText("电话 +短信拦截");
             }
-            
-            //为delete图片设置点击监听事件
+
+            // 为delete图片设置点击监听事件
             holder.iv_delete.setClickable(true);
             holder.iv_delete.setOnClickListener(new OnClickListener() {
-                
+
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CallDefenderActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            CallDefenderActivity.this);
                     builder.setTitle("删除警告");
                     builder.setMessage("are you 真的要删除此条目吗?想好了吗亲?");
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            
-                            //获取当前黑名单的条目
-                            BlackNumberBean bean = list.get(current_position);
-                            //执行删除
-                            dao.delete(bean.getNumber());
-                            //刷新界面
-                            loadData();
-                        }
-                    });
-                    
-                    //创建对话框
+                    builder.setNegativeButton("取消",
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+                                    dialog.cancel();
+                                    dialog.dismiss();
+                                }
+                            });
+                    builder.setPositiveButton("确定",
+                            new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                        int which) {
+
+                                    // 获取当前黑名单的条目
+                                    BlackNumberBean bean = list
+                                            .get(current_position);
+                                    // 执行删除
+                                    dao.delete(bean.getNumber());
+                                    // 刷新界面
+                                    loadData();
+                                }
+                            });
+
+                    // 创建对话框
                     AlertDialog dialog = builder.create();
-                    
-                    //显示对话框
+
+                    // 显示对话框
                     dialog.show();
-                    
+
                 }
             });
             return convertView;
@@ -336,7 +370,7 @@ public class CallDefenderActivity extends Activity {
             // 清除输入框中用户输入的数字
             et_input.setText("");
             et_input.clearFocus();
-            
+
             // 跳转到指定页面
             current_page = page_number;
             loadData();
@@ -344,7 +378,103 @@ public class CallDefenderActivity extends Activity {
     }
 
     /**
+     * 添加按钮的单击事件
+     * 
+     * @param v
+     */
+    public void Add(View v) {
+        // 获取对话框的布局文件
+        View alertdialog_view = View.inflate(this,
+                R.layout.layout_calldefender_add_view, null);
+
+        // 获取布局文件中的组件
+        final EditText et = (EditText) alertdialog_view
+                .findViewById(R.id.layout_calldefender_add_view_et);
+        final CheckBox cb_defphone = (CheckBox) alertdialog_view
+                .findViewById(R.id.layout_calldefender_add_view_cb_defphone);
+        final CheckBox cb_defsms = (CheckBox) alertdialog_view
+                .findViewById(R.id.layout_calldefender_add_view_cb_defsms);
+
+        // 创建对话框的builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("添加黑名单");
+        builder.setView(alertdialog_view);
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //关闭对话框
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //获取用户输入的手机号码以及拦截模式
+                String phone = et.getText().toString().trim();
+                boolean defphone = cb_defphone.isChecked();
+                boolean defsms = cb_defsms.isChecked();
+                
+                //判断用户输入的合法性
+                if (TextUtils.isEmpty(phone))
+                {
+                    DisplayTools.ShowToast(CallDefenderActivity.this, "请输入电话号码");
+                    return; 
+                }
+                else if (!TextUtils.isDigitsOnly(phone))
+                {
+                    DisplayTools.ShowToast(CallDefenderActivity.this, "请输入正确的电话号码");
+                    return;
+                }
+                BlackNumberBean bean = dao.find(phone);
+                if (bean != null) //判断用户输入的电话号码在数据库中是否已经存在
+                {
+                    DisplayTools.ShowToast(CallDefenderActivity.this, "该电话号码已经存在");
+                    
+                    return;
+                }
+                
+                
+                if (!defphone && !defsms)
+                {
+                    DisplayTools.ShowToast(CallDefenderActivity.this, "请至少选择一种拦截模式");
+                    return;
+                }
+                
+                //转换数据格式
+                String mode = "0";
+                if (defphone && !defsms)
+                    mode = "1";
+                else if (!defphone && defsms)
+                    mode = "2";
+                else 
+                    mode = "3";
+                
+                //将数据存入数据库中
+                boolean result = dao.add(phone, mode);
+                
+                if (result)
+                    DisplayTools.ShowToast(CallDefenderActivity.this, "添加成功");
+                else
+                    DisplayTools.ShowToast(CallDefenderActivity.this, "添加失败");
+                
+                //关闭对话框界面
+                dialog.dismiss();
+                
+                //刷新界面
+                updateToolbar();
+                current_page = page_count - 1;
+                loadData();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /**
      * 更新底部工具栏中的显示状态
+     * 
      * @param view
      */
     public void updateToolbar() {

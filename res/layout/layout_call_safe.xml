@@ -3,13 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    >
     <TextView
         style="@style/title_style"
         android:text="通信卫士" 
         android:focusable="true"
         android:focusableInTouchMode="true"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textSize="30sp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@color/green_light"
+        android:onClick="Add"
+        
+        />
+</RelativeLayout>
+    
+    
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

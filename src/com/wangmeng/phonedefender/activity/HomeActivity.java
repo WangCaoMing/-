@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.wangmeng.phonedefender.R;
@@ -36,7 +37,7 @@ public class HomeActivity extends Activity {
 
 	// 配置文件
 	private static SharedPreferences sprefs;
-
+	
 	// GridVeiw所需的资源数组
 	String[] gv_item_name = new String[] { "手机防盗", "通信卫士", "软件管理", "进程管理",
 			"流量统计", "手机杀毒", "缓存清理", "高级工具", "设置中心" };
@@ -48,7 +49,6 @@ public class HomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_home);
-	
 		// 获取配置文件
 		sprefs = getSharedPreferences("sprefs", MODE_PRIVATE);
 		// 获取显示组件
@@ -92,7 +92,7 @@ public class HomeActivity extends Activity {
 		});
 		// 为GridView设置单击事件的监听
 		home_gv_main.setOnItemClickListener(new OnItemClickListener() {
-
+		    
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -108,9 +108,19 @@ public class HomeActivity extends Activity {
 				    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
 				    startActivity(new Intent(HomeActivity.this, CallDefenderActivity.class));
 				    break;
+				case 2: //点击软件管理按钮
+                    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+                    startActivity(new Intent(HomeActivity.this, SoftwareManagerActivity.class));
+				    break;
+				case 3:
+				    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+                    startActivity(new Intent(HomeActivity.this,
+                            TaskManagerActivity.class));
+				    break;
 				case 7: // 点击高级工具按钮
 					overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
 					startActivity(new Intent(HomeActivity.this, AdvancedToolsActivity.class));
+					
 					break;
 				case 8: // 点击设置中心按钮
 					overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);

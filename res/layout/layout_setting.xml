@@ -36,5 +36,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </com.wangmeng.phonedefender.self_defined_layout.SettingItemClickLayout>
+    
+    <com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout
+        android:id="@+id/layout_setting_sil_blacknumberswitch" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        defined:name="黑名单拦截开关"
+        defined:state_on="拦截开启"
+        defined:state_off="拦截关闭"
+        ></com.wangmeng.phonedefender.self_defined_layout.SettingItemLayout>
 
 </LinearLayout>

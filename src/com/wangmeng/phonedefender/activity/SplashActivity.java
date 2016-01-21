@@ -23,6 +23,7 @@ import com.wangmeng.phonedefender.R;
 import com.wangmeng.phonedefender.R.id;
 import com.wangmeng.phonedefender.R.layout;
 import com.wangmeng.phonedefender.service.CallStateService;
+import com.wangmeng.phonedefender.service.LanJieService;
 import com.wangmeng.phonedefender.tools.ConvertTools;
 import com.wangmeng.phonedefender.tools.DisplayTools;
 import com.wangmeng.phonedefender.tools.TransportTools;
@@ -45,6 +46,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.BitmapFactory;
 import android.view.Display;
 import android.view.Menu;
 import android.view.animation.ScaleAnimation;
@@ -222,10 +224,18 @@ public class SplashActivity extends Activity {
 		copyDB();
 		
 		//开启来电监听的服务
-		boolean callstateservice_state = sprefs.getBoolean("callstateservice_state", true); //从配置文件中获取监听电话状态的开启状态
+		boolean callstateservice_state = sprefs.getBoolean("2131296286", true); //从配置文件中获取监听电话状态的开启状态
 		if (callstateservice_state) // 设置相应的状态
 			startService(new Intent(this, CallStateService.class));
+		
+		//开启黑名单拦截服务
+		boolean lanjieservice_state = sprefs.getBoolean("2131296289", true);
+		if (lanjieservice_state)
+		    startService(new Intent(this, LanJieService.class));
 
+		//在桌面创建快捷方式
+		InstallShortCut();
+		
 		// 为splash界面设置启动的动画
 		ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1, 360, 640);
 		animation.setDuration(250);
@@ -233,6 +243,30 @@ public class SplashActivity extends Activity {
 	}
 	
 	/**
+	 * 创建快捷方式
+	 */
+	private void InstallShortCut() {
+	    
+	    //创建快捷方式的意图
+	    Intent intent = new Intent();
+	    intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+	    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "萌哥手机卫士");
+	    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher));
+	    intent.putExtra("duplicate", false); //设置关闭重复创建快捷方式
+	    //创建快捷方式的功能意图
+	    Intent shortcut_intent = new Intent();
+	    //再启动一个application中的某个页面是, 需要用隐式意图
+	    shortcut_intent.setAction("com.wangmeng.phonedefender.shortcut");
+	    shortcut_intent.addCategory(Intent.CATEGORY_DEFAULT);
+	    intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcut_intent);
+	    
+	    //发送意图
+	    this.sendBroadcast(intent);
+	    
+	    
+    }
+
+    /**
 	 * 拷贝数据库到files文件夹中
 	 */
 	private void copyDB() {

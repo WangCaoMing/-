@@ -52,6 +52,7 @@ public class SettingItemLayout extends RelativeLayout {
 		state_on = attrs.getAttributeValue(NAMESPACE, "state_on");
 		state_off = attrs.getAttributeValue(NAMESPACE, "state_off");
 		InitLayout();
+		System.out.println("name:" + name + " ,id:" + id);
 	}
 
 	public SettingItemLayout(Context context) {
