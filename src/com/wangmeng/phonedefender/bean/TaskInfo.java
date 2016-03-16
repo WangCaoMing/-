@@ -14,6 +14,7 @@ public class TaskInfo {
     private Drawable icon;
     private long memsize;
     private boolean usertask;
+    private boolean checked = false;
     public String getName() {
         return name;
     }
@@ -43,6 +44,13 @@ public class TaskInfo {
     }
     public void setUsertask(boolean usertask) {
         this.usertask = usertask;
+    }
+    
+    public boolean isChecked() {
+        return checked;
+    }
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
     @Override
     public String toString() {

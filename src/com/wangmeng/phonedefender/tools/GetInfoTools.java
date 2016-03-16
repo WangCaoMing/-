@@ -1,12 +1,20 @@
 package com.wangmeng.phonedefender.tools;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.wangmeng.phonedefender.bean.AppInfoBean;
 import com.wangmeng.phonedefender.bean.TaskInfo;
 
+import android.R.integer;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.Service;
@@ -159,6 +167,47 @@ public class GetInfoTools {
         //    System.out.println(bean.toString());
         }
         return list;
+    }
+    
+    /**
+     * 计算给定文件的MD5值
+     * @param file 要计算MD5的文件
+     * @return 字符串类型的MD5值(16进制)
+     */
+    public static String getFileMd5(File file)
+    {
+        try {
+            MessageDigest md5 = MessageDigest.getInstance("md5");
+            InputStream in = new FileInputStream(file);
+            byte[] b = new byte[1024];
+            int length = -1;
+            while ((length = in.read(b)) != -1)
+            {
+                md5.update(b, 0, length);
+            }
+            
+            byte[] digest = md5.digest();
+            StringBuffer buffer = new StringBuffer();
+            for (int i = 0; i < digest.length; ++i)
+            {
+                int temp = digest[i] & 0xff;
+                String hex = Integer.toHexString(temp);
+                buffer.append((hex.length() == 2) ? hex : "0" + hex);
+            }
+            
+            return buffer.toString();
+            
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
     
 }

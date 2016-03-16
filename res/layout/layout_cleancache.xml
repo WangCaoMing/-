@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    >
+    <TextView
+        style="@style/title_style"
+        android:text="缓存清理" 
+        />
+    <ListView
+        android:id="@+id/layout_cleancache_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" 
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        ></ListView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="全部清理" 
+        android:layout_margin="5dp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:background="@drawable/button_green"
+        android:onClick="cleanAll"
+        />
+</LinearLayout>

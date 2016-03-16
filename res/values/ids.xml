@@ -2,4 +2,6 @@
 <resources>
     <item type="id" name="layout_calldefender_item_tv_mode"></item>
     <item type="id" name="layout_calldefender_item_iv_delete"></item>
+    <item type="id" name="widget_tv_processnum"></item>
+    <item type="id" name="widget_tv_validmem"></item>
 </resources>

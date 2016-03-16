@@ -11,6 +11,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import net.youmi.android.AdManager;
+import net.youmi.android.spot.SpotManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -187,6 +190,11 @@ public class SplashActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_splash);
+		
+		// 有米广告
+		AdManager.getInstance(this).init("d15384030e542d3a", "82fd19b8d2836c17", false);
+		SpotManager.getInstance(this).loadSpotAds();
+		
 		// 获取配置文件
 		sprefs = getSharedPreferences("sprefs", MODE_PRIVATE);
 
@@ -240,6 +248,9 @@ public class SplashActivity extends Activity {
 		ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1, 360, 640);
 		animation.setDuration(250);
 		splash_layout.startAnimation(animation);
+		
+		//有米广告
+		SpotManager.getInstance(this).showSplashSpotAds(this, null);
 	}
 	
 	/**
@@ -251,7 +262,7 @@ public class SplashActivity extends Activity {
 	    Intent intent = new Intent();
 	    intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 	    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "萌哥手机卫士");
-	    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher));
+	    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher_l));
 	    intent.putExtra("duplicate", false); //设置关闭重复创建快捷方式
 	    //创建快捷方式的功能意图
 	    Intent shortcut_intent = new Intent();

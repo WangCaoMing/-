@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <!--
+                    设置四个圆角的半径 
+     -->
+    <corners android:radius="5dp"></corners>
+    <!--
+                    设置渐变色 
+       startColor: 开始颜色
+       centerColor : 中间颜色
+       endColor: 末尾颜色
+     -->
+    <!--
+    <gradient android:startColor="#ff0000" 
+              android:centerColor="#ffff00" 
+              android:endColor="#ffffff"/> 
+     -->
+    
+    <!--
+                       固定颜色, 与上方的渐变色互斥. 这两个只能设置一个
+     -->
+    <solid android:color="#ff0000"/>
+    
+    <!--
+                    设置边框
+                    注:设置颜色的同时必须设置宽度, 否则看不到 
+       dashGap:间隙值,用来设置间隙宽度(即虚线的间隙)
+       dashWidth:每段虚线的宽度, 与上面的属性必须同时存在, 否则没有效果.
+     -->
+    <stroke
+        android:width="5dp"
+         android:color="#00ff00"
+         android:dashGap="1dp"
+         android:dashWidth="10dp"
+        />
+    
+    <!-- 
+                     内容距离边框的距离
+     -->
+    <padding android:left="100dp"
+        android:top="100dp"
+        android:right="100dp"
+        android:bottom="100dp"/>
+</shape>

@@ -12,5 +12,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/CellPhoneDefender/libs/commons-lang-2.6.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/YoumiSdk_v6.1.0_2016-02-26.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

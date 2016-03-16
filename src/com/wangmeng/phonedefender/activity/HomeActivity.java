@@ -117,6 +117,19 @@ public class HomeActivity extends Activity {
                     startActivity(new Intent(HomeActivity.this,
                             TaskManagerActivity.class));
 				    break;
+				case 4:
+                    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+                    startActivity(new Intent(HomeActivity.this,
+                            TrafficState.class));
+                    break;
+				case 5:
+				    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+				    startActivity(new Intent(HomeActivity.this, FindKillWorm.class));
+				    break;
+				case 6:
+                    overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
+                    startActivity(new Intent(HomeActivity.this, CleanCache.class));
+                    break;
 				case 7: // 点击高级工具按钮
 					overridePendingTransition(R.anim.next_enter_anim, R.anim.next_out_anim);
 					startActivity(new Intent(HomeActivity.this, AdvancedToolsActivity.class));
