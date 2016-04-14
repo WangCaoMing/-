@@ -107,8 +107,5 @@ public class AdvancedToolsActivity extends Activity {
 	        DisplayTools.ShowToast(this, "SD卡不可用, 无法完成备份");
 	    }
 	    
-	    
-	    
-	    
 	}
 }

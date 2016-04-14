@@ -11,12 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="20sp"
-        android:shadowColor="#ff99cc00"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:textSize="18sp"
         android:text="@string/test_text"
         android:textColor="#ffffff" />
     <ProgressBar

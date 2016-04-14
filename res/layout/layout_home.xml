@@ -8,7 +8,7 @@
         style="@style/title_style"
         android:text="主界面" />
 
-    <TextView
+    <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -16,8 +16,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:singleLine="true"
-        android:text="萌哥手机卫士,你值得拥有,你用不了吃亏,你用不了上当,你值得拥有!"
-        android:textSize="20sp" />
+        android:text=""
+        android:textSize="20sp" /> -->
 
     <GridView
         android:id="@+id/home_gv_main"
